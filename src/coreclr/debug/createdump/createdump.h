@@ -56,8 +56,9 @@ typedef int T_CONTEXT;
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/ptrace.h>
-#include <sys/user.h>
+// zhuowei: ptrace is private
+// #include <sys/ptrace.h>
+// #include <sys/user.h>
 #include <sys/wait.h>
 #ifndef __APPLE__
 #include <sys/procfs.h>
@@ -89,7 +90,10 @@ typedef int T_CONTEXT;
 #ifdef HOST_UNIX
 #ifdef __APPLE__
 #include <mach/mach.h>
-#include <mach/mach_vm.h>
+// zhuowei: nope
+//#include <mach/mach_vm.h>
+// zhuowei: ... and add
+#include <sys/sysctl.h>
 #endif
 #include "moduleinfo.h"
 #include "datatarget.h"

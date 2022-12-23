@@ -80,10 +80,13 @@ namespace
             return SystemResolveDllImport(entrypointName);
         }
 
+// zhuowei
+#if 0
         if (strcmp(libraryName, "libSystem.Security.Cryptography.Native.OpenSsl") == 0)
         {
             return CryptoResolveDllImport(entrypointName);
         }
+#endif
 #endif
         // there are two PInvokes in the hostpolicy itself, redirect them here.
         if (strcmp(libraryName, hostPolicyLib) == 0)
@@ -99,7 +102,8 @@ namespace
             }
         }
 
-#if defined(TARGET_OSX)
+// zhuowei
+#if defined(TARGET_OSX) && 0
         if (strcmp(libraryName, "libSystem.Security.Cryptography.Native.Apple") == 0)
         {
             return CryptoAppleResolveDllImport(entrypointName);

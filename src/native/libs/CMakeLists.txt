@@ -176,7 +176,8 @@ if (CLR_CMAKE_TARGET_UNIX OR CLR_CMAKE_TARGET_BROWSER)
     else ()
         add_subdirectory(System.Globalization.Native)
         add_subdirectory(System.Net.Security.Native)
-        add_subdirectory(System.Security.Cryptography.Native)
+        # zhuowei: do not build OpenSSL
+        # add_subdirectory(System.Security.Cryptography.Native)
     endif ()
 
     if (CLR_CMAKE_TARGET_OSX OR CLR_CMAKE_TARGET_MACCATALYST OR CLR_CMAKE_TARGET_IOS OR CLR_CMAKE_TARGET_TVOS)

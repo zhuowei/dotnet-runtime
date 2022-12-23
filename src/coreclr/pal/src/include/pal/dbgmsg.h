@@ -494,7 +494,9 @@ if new_level is -1, the nesting level will not be modified
 --*/
 int DBG_change_entrylevel(int new_level);
 
-#ifdef __APPLE__
+// zhuowei
+// #ifdef __APPLE__
+#if 0
 /*++
 Function :
     PAL_DisplayDialog

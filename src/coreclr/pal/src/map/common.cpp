@@ -44,7 +44,9 @@ INT W32toUnixAccessControl( IN DWORD flProtect )
         MemAccessControl = PROT_READ | PROT_WRITE;
         break;
     case PAGE_EXECUTE_READWRITE:
-        MemAccessControl = PROT_EXEC | PROT_READ | PROT_WRITE;
+//        MemAccessControl = PROT_EXEC | PROT_READ | PROT_WRITE;
+// zhuowei: hack: no rwx on iOS
+        MemAccessControl = PROT_EXEC | PROT_READ;
         break;
     case PAGE_EXECUTE :
         MemAccessControl = PROT_EXEC;

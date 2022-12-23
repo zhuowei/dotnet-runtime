@@ -138,7 +138,7 @@ else()
         System.IO.Compression.Native-Static
         System.Net.Security.Native-Static
         System.Native-Static
-        System.Security.Cryptography.Native.OpenSsl-Static
+        #System.Security.Cryptography.Native.OpenSsl-Static
 
         palrt
         coreclrpal
@@ -159,8 +159,9 @@ else()
     append_extra_system_libs(NATIVE_LIBS)
 
     # Additional requirements for System.Security.Cryptography.Native.OpenSsl
-    include(${CLR_SRC_NATIVE_DIR}/libs/System.Security.Cryptography.Native/extra_libs.cmake)
-    append_extra_cryptography_libs(NATIVE_LIBS)
+    # zhuowei: no OpenSSL
+    #include(${CLR_SRC_NATIVE_DIR}/libs/System.Security.Cryptography.Native/extra_libs.cmake)
+    #append_extra_cryptography_libs(NATIVE_LIBS)
 
     set(RUNTIMEINFO_LIB runtimeinfo)
 
@@ -183,13 +184,14 @@ if(CLR_CMAKE_TARGET_OSX)
    find_library(COREFOUNDATION CoreFoundation)
    find_library(CORESERVICES CoreServices)
    find_library(SECURITY Security)
-   find_library(SYSTEM System)
+   # zhuowei
+   # find_library(SYSTEM System)
 
    LIST(APPEND NATIVE_LIBS
      ${COREFOUNDATION}
      ${CORESERVICES}
      ${SECURITY}
-     ${SYSTEM}
+     # ${SYSTEM}
    )
 elseif(CLR_CMAKE_TARGET_NETBSD)
      find_library(KVM kvm)

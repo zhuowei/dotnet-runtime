@@ -1784,7 +1784,8 @@ ExitVirtualProtect:
     return bRetVal;
 }
 
-#if defined(HOST_OSX) && defined(HOST_ARM64)
+// zhuowei: iOS uses split instead
+#if defined(HOST_OSX) && defined(HOST_ARM64) && 0
 PALAPI VOID PAL_JitWriteProtect(bool writeEnable)
 {
     thread_local int enabledCount = 0;

@@ -734,7 +734,9 @@ bool DBG_ShouldCheckStackAlignment()
 }
 #endif // _DEBUG && __APPLE__
 
-#ifdef __APPLE__
+// #ifdef __APPLE__
+// zhuowei: nope
+#if 0
 #include "CoreFoundation/CFUserNotification.h"
 #include "CoreFoundation/CFString.h"
 #include "Security/AuthSession.h"

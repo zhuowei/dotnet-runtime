@@ -105,7 +105,8 @@ bool ExecutableAllocator::IsDoubleMappingEnabled()
 {
     LIMITED_METHOD_CONTRACT;
 
-#if defined(HOST_OSX) && defined(HOST_ARM64)
+// zhuowei
+#if defined(HOST_OSX) && defined(HOST_ARM64) && 0
     return false;
 #else
     return g_isWXorXEnabled;
@@ -116,7 +117,8 @@ bool ExecutableAllocator::IsWXORXEnabled()
 {
     LIMITED_METHOD_CONTRACT;
 
-#if defined(HOST_OSX) && defined(HOST_ARM64)
+// zhuowei
+#if defined(HOST_OSX) && defined(HOST_ARM64) && 0
     return true;
 #else
     return g_isWXorXEnabled;

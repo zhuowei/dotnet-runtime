@@ -80,7 +80,8 @@ Revision History:
 #define OLD_DEBUG _DEBUG
 #undef _DEBUG
 #endif
-#include <sys/user.h>
+// zhuowei: no user.h on iOS
+// #include <sys/user.h>
 #if USER_H_DEFINES_DEBUG
 #undef _DEBUG
 #define _DEBUG OLD_DEBUG
@@ -217,7 +218,10 @@ GetSystemInfo(
     TRACE("dwNumberOfProcessors=%d\n", nrcpus);
     lpSystemInfo->dwNumberOfProcessors = nrcpus;
 
-#ifdef VM_MAXUSER_ADDRESS
+//#ifdef VM_MAXUSER_ADDRESS
+#if 1
+    lpSystemInfo->lpMaximumApplicationAddress = (PVOID) (0x300000000ull);
+#elif defined(VM_MAXUSER_ADDRESS)
     lpSystemInfo->lpMaximumApplicationAddress = (PVOID) VM_MAXUSER_ADDRESS;
 #elif defined(__linux__)
     lpSystemInfo->lpMaximumApplicationAddress = (PVOID) (1ull << 47);

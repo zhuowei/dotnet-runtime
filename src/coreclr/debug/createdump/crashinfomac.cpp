@@ -103,8 +103,9 @@ bool
 CrashInfo::EnumerateMemoryRegions()
 {
     vm_region_submap_info_data_64_t info;
-    mach_vm_address_t address = 1;
-    mach_vm_size_t size = 0;
+    // zhuowei: iOS renamed this
+    vm_address_t address = 1;
+    vm_size_t size = 0;
     uint64_t cbAllMemoryRegions = 0;
     uint32_t depth = 0;
 
@@ -112,7 +113,8 @@ CrashInfo::EnumerateMemoryRegions()
     while (address > 0 && address < MACH_VM_MAX_ADDRESS)
     {
         mach_msg_type_number_t count = VM_REGION_SUBMAP_INFO_COUNT_64;
-        kern_return_t result = ::mach_vm_region_recurse(Task(), &address, &size, &depth, (vm_region_recurse_info_t)&info, &count);
+        // zhuowei: iOS renamed this
+        kern_return_t result = ::vm_region_recurse_64(Task(), &address, &size, &depth, (vm_region_recurse_info_t)&info, &count);
         if (result != KERN_SUCCESS) {
             // Iteration can be ended on a KERN_INVALID_ADDRESS
             // Allow other kernel errors to continue too so we can get at least part of a dump

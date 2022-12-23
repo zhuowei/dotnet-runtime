@@ -254,7 +254,8 @@ class ExecutableWriterHolder
 
     void Unmap()
     {
-#if defined(HOST_OSX) && defined(HOST_ARM64) && !defined(DACCESS_COMPILE)
+// zhuowei
+#if defined(HOST_OSX) && defined(HOST_ARM64) && !defined(DACCESS_COMPILE) && 0
         if (m_addressRX != NULL)
         {
             PAL_JitWriteProtect(false);
@@ -290,7 +291,8 @@ public:
     ExecutableWriterHolder(T* addressRX, size_t size)
     {
         m_addressRX = addressRX;
-#if defined(HOST_OSX) && defined(HOST_ARM64)
+// zhuowei
+#if defined(HOST_OSX) && defined(HOST_ARM64) && 0
         m_addressRW = addressRX;
         PAL_JitWriteProtect(true);
 #else

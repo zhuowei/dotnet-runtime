@@ -3,6 +3,9 @@
 
 #include "pal_signverify.h"
 
+// zhuowei: hack
+#undef TARGET_OSX
+
 #if defined(TARGET_OSX)
 static int32_t ExecuteSignTransform(SecTransformRef signer, CFDataRef* pSignatureOut, CFErrorRef* pErrorOut);
 static int32_t ExecuteVerifyTransform(SecTransformRef verifier, CFErrorRef* pErrorOut);

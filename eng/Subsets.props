@@ -235,6 +235,7 @@
   </ItemGroup>
 
   <!-- Build the CoreCLR cross-arch tools when we're doing a cross-architecture build and either we're building any CoreCLR native tools for platforms CoreCLR fully supports or when someone explicitly requests them -->
+  <!-- zhuowei: hack: drop cmake args -->
   <ItemGroup Condition="(('$(ClrRuntimeBuildSubsets)' != '' and '$(PrimaryRuntimeFlavor)' == 'CoreCLR' and '$(TargetsMobile)' != 'true') or $(_subset.Contains('+clr.crossarchtools+'))) and '$(BuildArchitecture)' != '$(TargetArchitecture)'">
     <ProjectToBuild
       Include="$(CoreClrProjectRoot)runtime.proj"
@@ -244,7 +245,7 @@
                             PgoInstrument=false;
                             NoPgoOptimize=true;
                             CrossBuild=false;
-                            CMakeArgs=$(CMakeArgs) -DCLR_CROSS_COMPONENTS_BUILD=1"
+                            CMakeArgs=-DCLR_CROSS_COMPONENTS_BUILD=1"
       Category="clr" />
   </ItemGroup>
 

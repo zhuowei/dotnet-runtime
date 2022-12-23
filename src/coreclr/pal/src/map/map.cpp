@@ -2041,7 +2041,8 @@ MAPmmapAndRecord(
         // Mojave hardened runtime doesn't allow executable mappings of a file. So we have to create an
         // anonymous mapping and read the file contents into it instead.
 
-#if defined(HOST_ARM64)
+// zhuowei: nope
+#if defined(HOST_ARM64) && 0
         // Set the requested mapping with forced PROT_WRITE, mmap the file, and copy its contents there.
         // Once PROT_WRITE and PROT_EXEC are set together, Apple Silicon will require the use of
         // PAL_JitWriteProtect to switch between executable and writable.

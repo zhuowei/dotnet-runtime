@@ -45,7 +45,8 @@ SET_DEFAULT_DEBUG_CHANNEL(DEBUG); // some headers have code with asserts, so do 
 #elif defined(HAVE_TTRACE) // HAVE_PROCFS_CTL
 #include <sys/ttrace.h>
 #else // defined(HAVE_TTRACE)
-#include <sys/ptrace.h>
+// zhuowei: no ptrace on iOS
+// #include <sys/ptrace.h>
 #endif  // HAVE_PROCFS_CTL
 #if HAVE_VM_READ
 #include <mach/mach.h>
@@ -60,7 +61,7 @@ SET_DEFAULT_DEBUG_CHANNEL(DEBUG); // some headers have code with asserts, so do 
 
 #ifdef __APPLE__
 #include <mach/mach.h>
-#include <mach/mach_vm.h>
+// #include <mach/mach_vm.h>
 #endif // __APPLE__
 
 #if HAVE_MACH_EXCEPTIONS

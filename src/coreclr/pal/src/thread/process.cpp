@@ -82,9 +82,10 @@ SET_DEFAULT_DEBUG_CHANNEL(PROCESS); // some headers have code with asserts, so d
 #endif
 
 #ifdef __APPLE__
-#include <libproc.h>
+// zhuowei: private on iOS
+// #include <libproc.h>
 #include <sys/sysctl.h>
-#include <sys/posix_sem.h>
+// #include <sys/posix_sem.h>
 #include <mach/task.h>
 #include <mach/vm_map.h>
 extern "C"
@@ -223,7 +224,9 @@ PathCharString* gSharedFilesPath = nullptr;
 #if defined(__NetBSD__)
 #define CLR_SEM_MAX_NAMELEN 15
 #elif defined(__APPLE__)
-#define CLR_SEM_MAX_NAMELEN PSEMNAMLEN
+//#define CLR_SEM_MAX_NAMELEN PSEMNAMLEN
+// zhuowei
+#define CLR_SEM_MAX_NAMELEN 64
 #elif defined(NAME_MAX)
 #define CLR_SEM_MAX_NAMELEN (NAME_MAX - 4)
 #else
@@ -1417,6 +1420,8 @@ BOOL
 PALAPI
 PAL_NotifyRuntimeStarted()
 {
+// zhuowei
+#if 0
     char startupSemName[CLR_SEM_MAX_NAMELEN];
     char continueSemName[CLR_SEM_MAX_NAMELEN];
     sem_t *startupSem = SEM_FAILED;
@@ -1485,6 +1490,8 @@ exit:
         sem_close(continueSem);
     }
     return launched;
+#endif
+    return TRUE;
 }
 
 LPCSTR

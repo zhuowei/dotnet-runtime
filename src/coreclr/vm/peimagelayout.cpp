@@ -239,7 +239,7 @@ void PEImageLayout::ApplyBaseRelocations(bool relocationMustWriteCopy)
             // Restore the protection
             if (dwOldProtection != 0)
             {
-#if defined(__APPLE__) && defined(HOST_ARM64)
+#if defined(__APPLE__) && defined(HOST_ARM64) && 0
                 BOOL bExecRegion = (dwOldProtection & (PAGE_EXECUTE | PAGE_EXECUTE_READ |
                     PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)) != 0;
 
@@ -269,7 +269,7 @@ void PEImageLayout::ApplyBaseRelocations(bool relocationMustWriteCopy)
 #if defined(TARGET_UNIX)
                 if (((pSection->Characteristics & VAL32(IMAGE_SCN_MEM_EXECUTE)) != 0))
                 {
-#if defined(__APPLE__) && defined(HOST_ARM64)
+#if defined(__APPLE__) && defined(HOST_ARM64) && 0
                     // Enable writing on Apple Silicon
                     PAL_JitWriteProtect(true);
 #else
@@ -279,7 +279,7 @@ void PEImageLayout::ApplyBaseRelocations(bool relocationMustWriteCopy)
 #endif
                 }
 #endif // TARGET_UNIX
-#if !(defined(__APPLE__) && defined(HOST_ARM64))
+#if !(defined(__APPLE__) && defined(HOST_ARM64) && 0)
                 if (!ClrVirtualProtect(pWriteableRegion, cbWriteableRegion,
                                        dwNewProtection, &dwOldProtection))
                     ThrowLastError();
@@ -344,7 +344,7 @@ void PEImageLayout::ApplyBaseRelocations(bool relocationMustWriteCopy)
 
     if (dwOldProtection != 0)
     {
-#if defined(__APPLE__) && defined(HOST_ARM64)
+#if defined(__APPLE__) && defined(HOST_ARM64) && 0
         BOOL bExecRegion = (dwOldProtection & (PAGE_EXECUTE | PAGE_EXECUTE_READ |
             PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)) != 0;
 
