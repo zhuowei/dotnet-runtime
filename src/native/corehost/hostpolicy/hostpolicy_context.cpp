@@ -70,6 +70,8 @@ namespace
             return CompressionResolveDllImport(entrypointName);
         }
 
+// zhuowei
+#if 0
         if (strcmp(libraryName, "libSystem.Net.Security.Native") == 0)
         {
             return SecurityResolveDllImport(entrypointName);
@@ -79,6 +81,7 @@ namespace
         {
             return SystemResolveDllImport(entrypointName);
         }
+#endif
 
 // zhuowei
 #if 0

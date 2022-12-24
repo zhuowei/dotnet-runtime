@@ -27,10 +27,13 @@ namespace
 // here we handle PInvokes whose implementation is always statically linked (even in .so/.dll case)
 static const void* DefaultResolveDllImport(const char* libraryName, const char* entrypointName)
 {
+// zhuowei: nope, we dynamically link this too
+#if 0
     if (strcmp(libraryName, GLOBALIZATION_DLL_NAME) == 0)
     {
         return GlobalizationResolveDllImport(entrypointName);
     }
+#endif
 
     return nullptr;
 }

@@ -788,6 +788,8 @@ ipc_alloc_uds_address (
 	DiagnosticsIpcConnectionMode mode,
 	const ep_char8_t *ipc_name)
 {
+// zhuowei
+return NULL;
 #ifdef DS_IPC_PAL_AF_UNIX
 	EP_ASSERT (ipc != NULL);
 

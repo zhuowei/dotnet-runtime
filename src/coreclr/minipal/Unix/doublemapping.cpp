@@ -21,7 +21,9 @@
 #endif // TARGET_LINUX && !MFD_CLOEXEC
 #include "minipal.h"
 
-#if defined(TARGET_OSX) && defined(TARGET_AMD64)
+// zhuowei
+// #if defined(TARGET_OSX) && defined(TARGET_AMD64)
+#if defined(TARGET_OSX) && 1
 #include <mach/mach.h>
 #include <sys/sysctl.h>
 
@@ -210,7 +212,9 @@ void* VMToOSInterface::GetRWMapping(void *mapperHandle, void* pStart, size_t off
     int fd = (int)(size_t)mapperHandle;
     return mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, offset);
 #else // TARGET_OSX
-#ifdef TARGET_AMD64
+//#ifdef TARGET_AMD64
+// hack
+#if 1
     vm_address_t startRW;
     vm_prot_t curProtection, maxProtection;
     kern_return_t kr = vm_remap(mach_task_self(), &startRW, size, 0, VM_FLAGS_ANYWHERE | VM_FLAGS_RANDOM_ADDR,
