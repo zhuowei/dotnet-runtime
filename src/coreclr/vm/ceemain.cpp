@@ -834,10 +834,7 @@ void EEStartupHelper()
         // Initialize the debugging services. This must be done before any
         // EE thread objects are created, and before any classes or
         // modules are loaded.
-// zhuowei
-        //InitializeDebugger(); // throws on error
-// without init debugger this flag is otherwise never set and it asserts on !ftn->IsJitOptimizationDisabled()
-        g_CORDebuggerControlFlags = DBCF_ALLOW_JIT_OPT;
+        InitializeDebugger(); // throws on error
 #endif // DEBUGGING_SUPPORTED
 
 #ifdef PROFILING_SUPPORTED
